@@ -4,9 +4,9 @@ import reducer from '../Reducer/cartReducer'
 const CartContext = createContext();
 
 const getLocalCartData = () => {
-    let localCartData = localStorage.getItem("ecom-thapa")
-    if (localCartData.length === 0) {
-        return {};
+    let localCartData = localStorage.getItem("ecom-swift")
+    if (!localCartData) {
+        return [];
     } else {
         return JSON.parse(localCartData);
     }
@@ -25,7 +25,7 @@ const CartProvider = ({ children }) => {
     // Add data in localSotrage
     useEffect(() => {
         dispatch({ type: "CART_TOTAL_PRICE" })
-        localStorage.setItem("ecom-thapa", JSON.stringify(state.cart))
+        localStorage.setItem('ecom-swift', JSON.stringify(state.cart));
     }, [state.cart])
 
     const addToCart = (id, color, amount, product) => {
